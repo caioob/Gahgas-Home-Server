@@ -1,0 +1,8 @@
+username: vagrant
+packages:
+      - vim
+      - screen
+      - neofetch
+      - htop
+      - nodejs
+      - python3-pip

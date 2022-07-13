@@ -1,0 +1,45 @@
+- name: Deploy Deluge
+  community.docker.docker_container:
+    name: deluge
+    image: lscr.io/linuxserver/deluge:latest
+    volumes:
+      - /home/vagrant/deluge/config:/config
+      - /home/vagrant/downloads:/downloads
+    ports:
+      - 8112:8112
+      - 6881:6881
+      - 6881:6881/udp
+
+- name: Deploy Jellyfin
+  community.docker.docker_container:
+    name: jellyfin
+    image: lscr.io/linuxserver/jellyfin:latest
+    volumes:
+      - /home/vagrant/jellyfin/config:/config
+      - /home/vagrant/downloads/tvseries:/data/tvshows
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+      - 7359:7359/udp #optional
+      - 1900:1900/udp #optional
+
+- name: Deploy Sonarr
+  community.docker.docker_container:
+    name: sonarr
+    image: lscr.io/linuxserver/sonarr:latest
+    volumes:
+      - /home/vagrant/sonarr/config:/config
+      - /home/vagrant/downloads/tvseries:/tv
+      - /home/vagrant/downloads:/downloads
+    ports:
+      - 8989:8989
+
+- name: Deploy Jackett
+  community.docker.docker_container:
+    name: jackett
+    image: lscr.io/linuxserver/jackett:latest
+    volumes:
+      - /home/vagrant/jackett/config:/config
+      - /home/vagrant/downloads:/downloads
+    ports:
+      - 9117:9117

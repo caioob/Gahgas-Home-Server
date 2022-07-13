@@ -1,0 +1,56 @@
+- name: Update packages
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install essential packages
+  apt:
+    name: "{{packages}}"
+
+- name: Disable SSH password auth
+  lineinfile:
+    dest: /etc/ssh/ssh_config
+    regexp: "^PasswordAuthentication yes"
+    line: "PasswordAuthentication no"
+  register: ssh_config
+
+- name: Enable passwordless sudo for "{{ username }}"
+  lineinfile:
+   dest: /etc/sudoers
+   regexp: "^%sudo"
+   line: "{{ username }} ALL=(ALL) NOPASSWD:ALL"
+   #line: "{{ username }} ALL=(ALL) NOPASSWD: ALL"
+   validate: "/usr/sbin/visudo -cf %s"
+
+- name: Restart SSH daemon
+  service:
+    name: sshd
+    state: restarted
+  when: ssh_config.changed
+
+- name: Install Docker
+  community.general.snap:
+    name:
+      - docker
+
+- name: Ensure group "docker" exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Add the user "{{username}}" to docker group
+  ansible.builtin.user:
+    name: "{{username}}"
+    shell: /bin/bash
+    groups: docker
+    append: yes
+
+- name: install python sdk
+  pip:
+    name:
+      - docker
+      - docker-compose
+
+- name: Restart docker service
+  ansible.builtin.shell:
+    cmd: sudo snap disable docker; sudo snap enable docker

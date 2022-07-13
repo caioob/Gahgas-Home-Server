@@ -1,0 +1,52 @@
+Bringing machine 'default' up with 'libvirt' provider...
+==> default: Checking if box 'generic/ubuntu2010' version '4.0.2' is up to date...
+==> default: Creating image (snapshot of base box volume).
+==> default: Creating domain with the following settings...
+==> default:  -- Name:              ansible_default
+==> default:  -- Description:       Source: /home/gahgas/Documents/ubuntu_gahgas/ansible/Vagrantfile
+==> default:  -- Domain type:       kvm
+==> default:  -- Cpus:              2
+==> default:  -- Feature:           acpi
+==> default:  -- Feature:           apic
+==> default:  -- Feature:           pae
+==> default:  -- Clock offset:      utc
+==> default:  -- Memory:            2048M
+==> default:  -- Management MAC:    
+==> default:  -- Loader:            
+==> default:  -- Nvram:             
+==> default:  -- Base box:          generic/ubuntu2010
+==> default:  -- Storage pool:      default
+==> default:  -- Image(vda):        /var/lib/libvirt/images/ansible_default.img, virtio, 128G
+==> default:  -- Disk driver opts:  cache='default'
+==> default:  -- Kernel:            
+==> default:  -- Initrd:            
+==> default:  -- Graphics Type:     vnc
+==> default:  -- Graphics Port:     -1
+==> default:  -- Graphics IP:       127.0.0.1
+==> default:  -- Graphics Password: Not defined
+==> default:  -- Video Type:        cirrus
+==> default:  -- Video VRAM:        256
+==> default:  -- Video 3D accel:    false
+==> default:  -- Sound Type:	
+==> default:  -- Keymap:            en-us
+==> default:  -- TPM Backend:       passthrough
+==> default:  -- TPM Path:          
+==> default:  -- INPUT:             type=mouse, bus=ps2
+==> default: Creating shared folders metadata...
+==> default: Starting domain.
+==> default: Waiting for domain to get an IP address...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 192.168.121.58:22
+    default: SSH username: vagrant
+    default: SSH auth method: private key
+    default: 
+    default: Vagrant insecure key detected. Vagrant will automatically replace
+    default: this with a newly generated keypair for better security.
+    default: 
+    default: Inserting generated public key within guest...
+    default: Removing insecure key from the guest if it's present...
+    default: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> default: Machine booted and ready!
+==> default: Setting hostname...
+==> default: Running provisioner: copy ssh public key (shell)...
+    default: Running: inline script
